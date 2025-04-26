@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Ctrl + Shift + R ye basarak tarayýcý önbelleði temizlenerek deðiþiklikleri algýlar -->
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <!-- Alttaki satýr Bootstrap'in CSS dosyasýný sayfanýn stilini belirlemek için ekler. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+          crossorigin="anonymous">
+</head>
+<body>
+    @await Html.PartialAsync("_navbar")
+
+    <!--headerin her sayfada olmasý zorunlu deðil ama section tanýmlanmýþsa içeriði buraya aktar-->
+    @RenderSection("header", false)
+
+    <div class="container mt-3">
+        <!--"menu" adýnda bir section (bölüm) tanýmlanýp tanýmlanmadýðýný kontrol eder.-->
+        @if (IsSectionDefined("menu"))
+        {
+            <!--menu tanýmlanmýþsa ,içerik menuyle beraber bölünür -->
+            <div class="row">
+                <div class="col-md-3">
+                    @RenderSection("menu", false)
+                </div>
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Menü Yoksa Tüm Sayfa Ýçerik Olur-->
+            <div class="row">
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

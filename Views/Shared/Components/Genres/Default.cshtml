@@ -1,0 +1,22 @@
+@model List<Genre>
+<div class="list-group">
+    <a href="/movies/list" class="list-group-item list-group-item-action">Tüm Filmler</a>
+    @foreach (var genre in Model)
+    {
+        <!-- _menu.cshtml yerine component kullandým
+
+                 URL deðiþtiði için RouteData.Values["id"] deðeri güncellenir.
+                 Sayfa yeniden yüklendiðinde View Component tekrar çalýþýr ve yeni id'yi ViewBag’e aktarýr.
+
+
+        1?? Kullanýcý bir film türüne týkladýðýnda (movies/list/3), MoviesController çalýþýr.
+        2?? MoviesController ilgili View’e (Movies/List.cshtml) film listesini gönderir.
+        3?? GenresViewComponent çaðrýlýr ve seçili ID’ye göre buton aktif edilir.
+        4?? Sonuç olarak Movies/List.cshtml ve Genres.cshtml render edilir.
+                -->
+        <a href="/movies/list/@genre.GenreId"
+           class="list-group-item list-group-item-action @(ViewBag.SelectedGenre==genre.GenreId.ToString()?"active":"")">@genre.Name</a>
+    }
+
+
+</div>

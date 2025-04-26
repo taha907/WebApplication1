@@ -1,0 +1,36 @@
+@model MovieViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>   
+   
+</head>
+<body>
+    @if (Model.Movie.Count() > 0)
+    {
+        <h1>Film Listesi</h1>
+        @foreach (var movie in Model.Movie)
+        {
+            @await Html.PartialAsync("_movie", movie)
+            <!--
+            _movie.cshtml içinde zaten a model Movie diyerek bir Movie nesnesi beklediðini belirttin.
+                Ancak,
+                Index.cshtml içinde "hangi" Movie nesnesinin _movie.cshtml'e gönderileceðini belirtmek zorundasýn.
+            -->
+        }
+    }
+    else
+    {<div class="alert alert-warning" role="alert">
+    Film Bulunamadý
+    </div>
+    
+    }
+
+
+
+    @section menu
+        {
+        @await Component.InvokeAsync("Genres")
+    }
+
+
+</body>
+</html>
