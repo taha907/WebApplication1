@@ -1,0 +1,20 @@
+@model HomePageViewModel
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    
+</head>
+
+<body>
+    @section header {
+        @await Html.PartialAsync("_header")
+    }
+    @foreach (var movie in  Model.PopularMovies)
+    {
+        @await Html.PartialAsync("_movie", movie)
+    }
+
+
+
+</body>
+</html>
